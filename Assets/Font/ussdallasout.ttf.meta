@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7209cb7e48721cf479090a09c55e2ff1
+timeCreated: 1515119043
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: U.S.S. Dallas Outline
+  fontNames:
+  - U.S.S. Dallas Outline
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

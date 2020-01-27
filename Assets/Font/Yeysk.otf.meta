@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: dee2b024660f25545a2e35018f62293c
+timeCreated: 1519997848
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Yeysk
+  fontNames:
+  - Yeysk
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

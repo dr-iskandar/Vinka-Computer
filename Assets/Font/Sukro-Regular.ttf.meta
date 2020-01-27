@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e97b4243b24e86642819690596b19eef
+timeCreated: 1515119049
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Sukro
+  fontNames:
+  - Sukro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a5112061fe0d2f844902218f0252e82e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

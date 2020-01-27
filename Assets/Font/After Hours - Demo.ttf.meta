@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 21ae4255a274e824e841ec295e119e24
+timeCreated: 1515119042
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: After Hours - Demo
+  fontNames:
+  - After Hours - Demo
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

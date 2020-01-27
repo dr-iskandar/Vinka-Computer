@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 8e7037718d0b2694aae43e2b1d1b4ad5
+timeCreated: 1515119045
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: U.S.S. Dallas Title
+  fontNames:
+  - U.S.S. Dallas Title
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

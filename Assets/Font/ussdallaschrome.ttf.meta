@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f344e67ca1d36b0488df5ab2745017ad
+timeCreated: 1515119049
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: U.S.S. Dallas Chrome
+  fontNames:
+  - U.S.S. Dallas Chrome
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
