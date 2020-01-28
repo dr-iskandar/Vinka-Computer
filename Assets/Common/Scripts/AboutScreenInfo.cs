@@ -1,5 +1,5 @@
 ﻿/*===============================================================================
-Copyright (c) 2016-2018 PTC Inc. All Rights Reserved.
+Copyright (c) 2019 PTC Inc. All Rights Reserved.
 
 Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
@@ -21,12 +21,12 @@ public class AboutScreenInfo
 
     public string GetTitle(string titleKey)
     {
-        return GetValuefromDictionary(titles, titleKey);
+        return GetValuefromDictionary(this.titles, titleKey);
     }
 
     public string GetDescription(string descriptionKey)
     {
-        return GetValuefromDictionary(descriptions, descriptionKey);
+        return GetValuefromDictionary(this.descriptions, descriptionKey);
     }
 
     #endregion // PUBLIC_METHODS
@@ -56,7 +56,7 @@ public class AboutScreenInfo
 
         // Init our Title Strings
 
-        titles = new Dictionary<string, string>()
+        this.titles = new Dictionary<string, string>()
         {
             { "ImageTargets", "Image Targets" },
             { "VuMarks", "VuMarks" },
@@ -67,7 +67,6 @@ public class AboutScreenInfo
             { "CloudReco", "Cloud Reco" },
             { "VirtualButtons", "Virtual Buttons" },
             { "ModelTargets", "Model Targets" },
-            { "ModelTargetsTrained", "Model Targets (trained)"},
             { "GroundPlane", "Ground Plane" },
             { "BackgroundTextureAccess", "Background Texture Access" },
             { "OcclusionManagement", "Occlusion Management" },
@@ -109,11 +108,11 @@ public class AboutScreenInfo
 
         // Init our Description Strings
 
-        descriptions = new Dictionary<string, string>();
+        this.descriptions = new Dictionary<string, string>();
 
         // Image Targets
 
-        descriptions.Add(
+        this.descriptions.Add(
             "ImageTargets",
             description +
             "\nThe Image Targets sample shows how to detect an image " +
@@ -131,15 +130,14 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
-            "\n• Double tap to access options menu" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // VuMark
 
-        descriptions.Add(
+        this.descriptions.Add(
             "VuMarks",
             description +
             "\nThe VuMarks sample shows how to detect and track VuMarks." +
@@ -156,8 +154,7 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point device at VuMark" +
-            "\n• Single tap to focus" +
-            "\n• Double tap to access options menu" +
+            "\n• Double tap to focus" +
             "\n• Tap window showing VuMark ID to dismiss" +
             "\n\n" +
             footer + "\n");
@@ -165,7 +162,7 @@ public class AboutScreenInfo
 
         // Cylinder Targets
 
-        descriptions.Add(
+        this.descriptions.Add(
             "CylinderTargets",
             description +
             "\nThe Cylinder Targets sample shows how to detect a cylindrical " +
@@ -183,14 +180,14 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // Multi Targets
 
-        descriptions.Add(
+        this.descriptions.Add(
             "MultiTargets",
             description +
             "\nThe Multi Targets sample shows how to detect a simple cuboid 3D shape " +
@@ -206,14 +203,14 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // User Defined Targets
 
-        descriptions.Add(
+        this.descriptions.Add(
             "UserDefinedTargets",
             description +
             "\nThe User Defined Targets sample shows how to capture and create an " +
@@ -225,15 +222,14 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Hold device parallel to feature rich target and tap camera button" +
-            "\n• Single tap to focus" +
-            "\n• Double tap to access options menu" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // Object Reco
 
-        descriptions.Add(
+        this.descriptions.Add(
             "ObjectReco",
             description +
             "\nThe Object Recognition sample shows how to recognize and track an object." +
@@ -249,15 +245,14 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
-            "\n• Double tap to access the options menu" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // Cloud Reco
 
-        descriptions.Add(
+        this.descriptions.Add(
             "CloudReco",
             description +
             "\nThe Cloud Reco sample shows how to use the cloud recognition service to " +
@@ -273,15 +268,14 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
-            "\n• Double tap to access options menu" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // Virtual Buttons
 
-        descriptions.Add(
+        this.descriptions.Add(
             "VirtualButtons",
             description +
             "\nThe Virtual Buttons sample shows how the developer can define rectangular " +
@@ -298,70 +292,48 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // Model Targets
 
-        descriptions.Add(
+        this.descriptions.Add(
             "ModelTargets",
             description +
-            "\nThe Model Targets sample shows how to detect a 3D object " +
-            "and render a simple 3D representation on top of it." +
+            "\nThe Model Targets Sample shows how to detect a 3D object and " +
+            "render a simple 3D representation over it. The sample demonstrates " +
+            "how Standard, Advanced, and 360 DataSets work." +
             "\n\n" +
             keyFunctionality +
-            "\n• Load and activate a single Model Target database at a time" +
-            "\n• Detection using one of the initial Detection Positions of the Model Target" +
+            "\n• Standard Model Target: Loads a Model Target with multiple Guide Views " +
+            "that can be cycled with the click of a button and used to pick which view " +
+            "to detect of the physical model" +
+            "\n• Advanced Model Target: Loads two Model Targets that have automatic " +
+            "detection and snapping of Guide Views to the physical models" +
+            "\n• Model Target 360: Loads a Model Target that can be detected from arbitrary views" +
             "\n• Automatic 3D object tracking after successful detection" +
             "\n• Extended Tracking when target is not visible in the camera view" +
-            "\n\n" +
-            targets +
-            "\n• ModelTarget: 3D Printed Model" +
-            "\n\n" +
-            instructions +
-            "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
-            "\n• Double tap to access options menu" +
-            "\n• Change the Detection Position if needed" +
-            "\n\n" +
-            footer + "\n");
-
-
-        // Model Targets Trained
-
-        descriptions.Add(
-            "ModelTargetsTrained",
-            description +
-            "\nThe Model Targets (trained) sample demonstrates the detection " +
-            "and tracking of two example objects in arbitrary order." +
-            "\n\n" +
-            keyFunctionality +
-            "\n• Loading and activation of Model Targets (Two Detection Positions)" +
-            "\n• Detection of the object in camera view " +
-            "\n• Automatic 3D object tracking after successful detection " +
-            "\n• Device Tracking when the object is not visible in the camera view" +
             "\n\n" +
             targets +
             "\n• Model Target: 3D Printed Model (Mars Lander)" +
             "\n• Model Target: Toy Model (Bike)" +
             "\n\n" +
             instructions +
-            "\n• Point camera at one of the two objects (Mars Lander or Bike)" +
-            "\n• Move around the object" +
-            "\n• Point the camera to the next object" +
-            "\n• Move around the object" +
-            "\n• Single tap to focus" +
-            "\n• Double tap to access the options menu" +
-            "\n• Press Reset to restart the experience" +
+            "\n• Point camera at target to view" +
+            "\n• Double tap to focus" +
+            "\n• Switch to access a different dataset" +
+            "\n• Mars Lander is in all three datasets" +
+            "\n• Motorcycle is in the Advanced dataset" +
+            "\n• Change the Detection Position if needed" +
             "\n\n" +
             footer + "\n");
 
 
         // Ground Plane
 
-        descriptions.Add(
+        this.descriptions.Add(
             "GroundPlane",
             description +
             "\nThe Ground Plane sample demonstrates how to place " +
@@ -395,7 +367,7 @@ public class AboutScreenInfo
 
         // Background Texture Access
 
-        descriptions.Add(
+        this.descriptions.Add(
             "BackgroundTextureAccess",
             description +
             "\nThe Background Texture Access sample shows how to use two shaders to " +
@@ -418,7 +390,7 @@ public class AboutScreenInfo
 
         // Occlusion Management
 
-        descriptions.Add(
+        this.descriptions.Add(
             "OcclusionManagement",
             description +
             "\nThe Occlusion Management sample shows the use of transparent shaders to " +
@@ -433,14 +405,14 @@ public class AboutScreenInfo
             "\n\n" +
             instructions +
             "\n• Point camera at target to view" +
-            "\n• Single tap to focus" +
+            "\n• Double tap to focus" +
             "\n\n" +
             footer + "\n");
 
 
         // Books
 
-        descriptions.Add(
+        this.descriptions.Add(
             "Books",
             description +
             "\nThe Books sample shows how to use the Cloud Recognition service to build a " +
@@ -465,7 +437,7 @@ public class AboutScreenInfo
 
         // ARVR
 
-        descriptions.Add(
+        this.descriptions.Add(
             "ARVR",
             description +
             "\nThis sample demonstrates a mixed reality experience that starts in AR and moves to VR." +

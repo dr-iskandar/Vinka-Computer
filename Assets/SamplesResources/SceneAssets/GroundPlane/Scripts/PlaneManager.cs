@@ -491,6 +491,8 @@ public class PlaneManager : MonoBehaviour
                 break;
             case TrackableBehaviour.StatusInfo.INSUFFICIENT_FEATURES:
                 break;
+            case TrackableBehaviour.StatusInfo.INSUFFICIENT_LIGHT:
+                break;
             case TrackableBehaviour.StatusInfo.RELOCALIZING:
                 // Start a 10 second timer to Reset Device Tracker
                 if (!this.timer.Enabled)

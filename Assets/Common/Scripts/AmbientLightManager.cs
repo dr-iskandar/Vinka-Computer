@@ -41,6 +41,10 @@ public class AmbientLightManager : MonoBehaviour
             // Set to scene's ambient light intensity and clamp between 0 and 1
             RenderSettings.ambientIntensity = Mathf.Clamp01(intensity);
         }
+        else
+        {
+            this.sceneLight.intensity = this.maxIntensity;
+        }
     }
 
     #endregion // MONOBEHAVIOUR_METHODS

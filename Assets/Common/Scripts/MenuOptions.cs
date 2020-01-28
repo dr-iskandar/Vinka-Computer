@@ -1,88 +1,104 @@
 /*===============================================================================
-Copyright (c) 2015-2018 PTC Inc. All Rights Reserved.
+Copyright (c) 2019 PTC Inc. All Rights Reserved.
 
 Copyright (c) 2015 Qualcomm Connected Experiences, Inc. All Rights Reserved.
 
 Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
 ===============================================================================*/
+
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
-
 using System.Collections.Generic;
+using System.Linq;
 
 public class MenuOptions : MonoBehaviour
 {
     #region PRIVATE_MEMBERS
-    CameraSettings m_CameraSettings;
-    TrackableSettings m_TrackableSettings;
-    Toggle m_DeviceTrackerToggle, m_AutofocusToggle, m_FlashToggle;
-    Canvas m_OptionsMenuCanvas;
-    OptionsConfig m_OptionsConfig;
-    #endregion //PRIVATE_MEMBERS
+    CameraSettings cameraSettings;
+    TrackableSettings trackableSettings;
+    Toggle deviceTrackerToggle, autofocusToggle, flashToggle;
+    Canvas optionsMenuCanvas;
+    OptionsConfig optionsConfig;
+    #endregion // PRIVATE_MEMBERS
 
     public bool IsDisplayed { get; private set; }
 
     #region MONOBEHAVIOUR_METHODS
     protected virtual void Start()
     {
-        m_CameraSettings = FindObjectOfType<CameraSettings>();
-        m_TrackableSettings = FindObjectOfType<TrackableSettings>();
-        m_OptionsConfig = FindObjectOfType<OptionsConfig>();
-        m_OptionsMenuCanvas = GetComponentInChildren<Canvas>(true);
-        m_DeviceTrackerToggle = FindUISelectableWithText<Toggle>("Tracker");
-        m_AutofocusToggle = FindUISelectableWithText<Toggle>("Autofocus");
-        m_FlashToggle = FindUISelectableWithText<Toggle>("Flash");
+        this.cameraSettings = FindObjectOfType<CameraSettings>();
+        this.trackableSettings = FindObjectOfType<TrackableSettings>();
+        this.optionsConfig = FindObjectOfType<OptionsConfig>();
+        this.optionsMenuCanvas = GetComponentInChildren<Canvas>(true);
+        this.deviceTrackerToggle = FindUISelectableWithText<Toggle>("Tracker");
+        this.autofocusToggle = FindUISelectableWithText<Toggle>("Autofocus");
+        this.flashToggle = FindUISelectableWithText<Toggle>("Flash");
 
-        var vuforia = VuforiaARController.Instance;
-        vuforia.RegisterOnPauseCallback(OnPaused);
+        VuforiaARController.Instance.RegisterOnPauseCallback(OnPaused);
     }
-    #endregion //MONOBEHAVIOUR_METHODS
+    #endregion // MONOBEHAVIOUR_METHODS
 
 
-    #region PUBLIC_METHODS
+    #region PUBLIC_BUTTON_METHODS
 
     public void ToggleAutofocus(bool enable)
     {
-        if (m_CameraSettings)
-            m_CameraSettings.SwitchAutofocus(enable);
+        if (this.cameraSettings)
+        {
+            this.cameraSettings.SwitchAutofocus(enable);
+        }
     }
 
     public void ToggleTorch(bool enable)
     {
-        if (m_FlashToggle && m_CameraSettings)
+        if (this.flashToggle && this.cameraSettings)
         {
-            m_CameraSettings.SwitchFlashTorch(enable);
+            this.cameraSettings.SwitchFlashTorch(enable);
 
             // Update UI toggle status (ON/OFF) in case the flash switch failed
-            m_FlashToggle.isOn = m_CameraSettings.IsFlashTorchEnabled();
+            this.flashToggle.isOn = this.cameraSettings.IsFlashTorchEnabled();
         }
     }
 
-
     public void ToggleExtendedTracking(bool enable)
     {
-        if (m_TrackableSettings)
-            m_TrackableSettings.ToggleDeviceTracking(enable);
+        if (this.trackableSettings)
+        {
+            this.trackableSettings.ToggleDeviceTracking(enable);
+        }
     }
+
+    #endregion // PUBLIC_BUTTON_METHODS
+
+
+    #region PUBLIC_METHODS
 
     public void ActivateDataset(string datasetName)
     {
-        if (m_TrackableSettings)
-            m_TrackableSettings.ActivateDataSet(datasetName);
+        if (this.trackableSettings)
+        {
+            this.trackableSettings.ActivateDataSet(datasetName);
+        }
     }
 
     public void UpdateUI()
     {
-        if (m_DeviceTrackerToggle && m_TrackableSettings)
-            m_DeviceTrackerToggle.isOn = m_TrackableSettings.IsDeviceTrackingEnabled();
+        if (this.deviceTrackerToggle && this.trackableSettings)
+        {
+            this.deviceTrackerToggle.isOn = this.trackableSettings.IsDeviceTrackingEnabled();
+        }
 
-        if (m_FlashToggle && m_CameraSettings)
-            m_FlashToggle.isOn = m_CameraSettings.IsFlashTorchEnabled();
+        if (this.flashToggle && this.cameraSettings)
+        {
+            this.flashToggle.isOn = this.cameraSettings.IsFlashTorchEnabled();
+        }
 
-        if (m_AutofocusToggle && m_CameraSettings)
-            m_AutofocusToggle.isOn = m_CameraSettings.IsAutofocusEnabled();
+        if (this.autofocusToggle && this.cameraSettings)
+        {
+            this.autofocusToggle.isOn = this.cameraSettings.IsAutofocusEnabled();
+        }
     }
 
     public void ResetDeviceTracker()
@@ -94,18 +110,13 @@ public class MenuOptions : MonoBehaviour
             Debug.Log("Stopping the ObjectTracker...");
             objTracker.Stop();
 
-            List<DataSet> tempDataSetList = new List<DataSet>();
-
             // Create a temporary list of active datasets to prevent
             // InvalidOperationException caused by modifying the active
             // dataset list while iterating through it
-            foreach (DataSet dataset in objTracker.GetDataSets())
-            {
-                tempDataSetList.Add(dataset);
-            }
+            List<DataSet> activeDataSets = objTracker.GetActiveDataSets().ToList();
 
             // Reset active datasets
-            foreach (DataSet dataset in tempDataSetList)
+            foreach (DataSet dataset in activeDataSets)
             {
                 objTracker.DeactivateDataSet(dataset);
                 objTracker.ActivateDataSet(dataset);
@@ -127,54 +138,57 @@ public class MenuOptions : MonoBehaviour
         }
     }
 
-
     public void ShowOptionsMenu(bool show)
     {
-        if (m_OptionsConfig && m_OptionsConfig.AnyOptionsEnabled())
+        if (this.optionsConfig && this.optionsConfig.AnyOptionsEnabled())
         {
-            if (show)
+            CanvasGroup canvasGroup = null;
+            
+            if (this.optionsMenuCanvas)
             {
-                UpdateUI();
-                m_OptionsMenuCanvas.gameObject.SetActive(true);
-                m_OptionsMenuCanvas.enabled = true;
-                IsDisplayed = true;
+                canvasGroup = this.optionsMenuCanvas.GetComponentInChildren<CanvasGroup>();
             }
             else
             {
-                m_OptionsMenuCanvas.gameObject.SetActive(false);
-                m_OptionsMenuCanvas.enabled = false;
-                IsDisplayed = false;
+                canvasGroup = GetComponent<CanvasGroup>();
             }
+            
+            if (show)
+            {
+                UpdateUI();
+            }
+
+            canvasGroup.interactable = show;
+            canvasGroup.blocksRaycasts = show;
+            canvasGroup.alpha = show ? 1.0f : 0.0f;
+            this.IsDisplayed = show;
         }
-    }
-
-    public void CycleGuideView()
-    {
-        var modelTarget = FindObjectOfType<ModelTargetBehaviour>().ModelTarget;
-
-        int guideViewIndexToActivate =
-            (modelTarget.GetActiveGuideViewIndex() + 1) % modelTarget.GetNumGuideViews();
-        modelTarget.SetActiveGuideViewIndex(guideViewIndexToActivate);
     }
 
     #endregion //PUBLIC_METHODS
 
 
     #region PROTECTED_METHODS
+
     protected T FindUISelectableWithText<T>(string text) where T : UnityEngine.UI.Selectable
     {
         T[] uiElements = GetComponentsInChildren<T>(true);
-        foreach (var uielem in uiElements)
+        foreach (var element in uiElements)
         {
-            string childText = uielem.GetComponentInChildren<Text>().text;
+            string childText = element.GetComponentInChildren<Text>().text;
             if (childText.Contains(text))
-                return uielem;
+            {
+                return element;
+            }
         }
         return null;
     }
-    #endregion //PROTECTED_METHODS
+
+    #endregion // PROTECTED_METHODS
+
 
     #region PRIVATE_METHODS
+
     private void OnPaused(bool paused)
     {
         if (paused)
@@ -190,6 +204,7 @@ public class MenuOptions : MonoBehaviour
             UpdateUI();
         }
     }
-    #endregion //PRIVATE_METHODS
+
+    #endregion // PRIVATE_METHODS
 
 }

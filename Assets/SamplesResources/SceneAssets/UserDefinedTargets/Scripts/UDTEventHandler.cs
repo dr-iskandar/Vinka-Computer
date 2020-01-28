@@ -7,8 +7,6 @@ Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
  * ==============================================================================*/
 using UnityEngine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Vuforia;
@@ -32,7 +30,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     #region PRIVATE_MEMBERS
     const int MAX_TARGETS = 5;
     UserDefinedTargetBuildingBehaviour m_TargetBuildingBehaviour;
-    QualityDialog m_QualityDialog;
     ObjectTracker m_ObjectTracker;
     FrameQualityMeter m_FrameQualityMeter;
 
@@ -59,12 +56,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         }
 
         m_FrameQualityMeter = FindObjectOfType<FrameQualityMeter>();
-        m_QualityDialog = FindObjectOfType<QualityDialog>();
-
-        if (m_QualityDialog)
-        {
-            m_QualityDialog.GetComponent<CanvasGroup>().alpha = 0;
-        }
     }
     #endregion //MONOBEHAVIOUR_METHODS
 
@@ -165,33 +156,9 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         else
         {
             Debug.Log("Cannot build new target, due to poor camera image quality");
-            if (m_QualityDialog)
-            {
-                StopAllCoroutines();
-                m_QualityDialog.GetComponent<CanvasGroup>().alpha = 1;
-                StartCoroutine(FadeOutQualityDialog());
-            }
+            StatusMessage.Instance.Display("Low camera image quality", true);
         }
     }
 
     #endregion //PUBLIC_METHODS
-
-
-    #region PRIVATE_METHODS
-
-    IEnumerator FadeOutQualityDialog()
-    {
-        yield return new WaitForSeconds(1f);
-        CanvasGroup canvasGroup = m_QualityDialog.GetComponent<CanvasGroup>();
-
-        for (float f = 1f; f >= 0; f -= 0.1f)
-        {
-            f = (float)Math.Round(f, 1);
-            Debug.Log("FadeOut: " + f);
-            canvasGroup.alpha = (float)Math.Round(f, 1);
-            yield return null;
-        }
-    }
-
-    #endregion //PRIVATE_METHODS
 }

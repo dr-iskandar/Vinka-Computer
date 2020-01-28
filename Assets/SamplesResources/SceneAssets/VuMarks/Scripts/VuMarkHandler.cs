@@ -31,6 +31,7 @@ public class VuMarkHandler : MonoBehaviour
     PanelShowHide nearestVuMarkScreenPanel;
     VuMarkTarget closestVuMark;
     VuMarkTarget currentVuMark;
+    Camera vuforiaCamera;
     #endregion // PRIVATE_MEMBER_VARIABLES
 
     #region PUBLIC_MEMBERS
@@ -94,6 +95,7 @@ public class VuMarkHandler : MonoBehaviour
         this.vumarkManager.RegisterVuMarkBehaviourDetectedCallback(OnVuMarkBehaviourDetected);
         this.vumarkManager.RegisterVuMarkDetectedCallback(OnVuMarkDetected);
         this.vumarkManager.RegisterVuMarkLostCallback(OnVuMarkLost);
+        this.vuforiaCamera = VuforiaBehaviour.Instance.GetComponent<Camera>();
     }
 
     #region VUMARK_CALLBACK_METHODS
@@ -270,7 +272,8 @@ public class VuMarkHandler : MonoBehaviour
 
     void SetVuMarkOpticalSeeThroughConfig(VuMarkBehaviour vumarkBehaviour)
     {
-        if (VuforiaConfiguration.Instance.DigitalEyewear.SeeThroughConfiguration == DigitalEyewearARController.SeeThroughConfiguration.HoloLens)
+        // Check to see if we're running on a HoloLens device.
+        if (UnityEngine.XR.XRDevice.isPresent && !UnityEngine.XR.WSA.HolographicSettings.IsDisplayOpaque)
         {
             MeshRenderer meshRenderer = vumarkBehaviour.GetComponent<MeshRenderer>();
 
@@ -421,14 +424,12 @@ public class VuMarkHandler : MonoBehaviour
     {
         if (VuforiaRuntimeUtilities.IsVuforiaEnabled() && VuforiaARController.Instance.HasStarted)
         {
-            Camera cam = DigitalEyewearARController.Instance.PrimaryCamera ?? Camera.main;
-
             float closestDistance = Mathf.Infinity;
 
             foreach (VuMarkBehaviour vumarkBehaviour in this.vumarkManager.GetActiveBehaviours())
             {
                 Vector3 worldPosition = vumarkBehaviour.transform.position;
-                Vector3 camPosition = cam.transform.InverseTransformPoint(worldPosition);
+                Vector3 camPosition = this.vuforiaCamera.transform.InverseTransformPoint(worldPosition);
 
                 float distance = Vector3.Distance(Vector2.zero, camPosition);
                 if (distance < closestDistance)

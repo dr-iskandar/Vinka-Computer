@@ -194,13 +194,16 @@ public class GroundPlaneUI : MonoBehaviour
                 statusMessage = "Limited Status";
                 break;
             case TrackableBehaviour.StatusInfo.INITIALIZING:
-                statusMessage = "Initializing Tracker";
+                statusMessage = "Point your device to the floor and move to scan";
                 break;
             case TrackableBehaviour.StatusInfo.EXCESSIVE_MOTION:
                 statusMessage = "Move slower";
                 break;
             case TrackableBehaviour.StatusInfo.INSUFFICIENT_FEATURES:
                 statusMessage = "Not enough visual features in the scene";
+                break;
+            case TrackableBehaviour.StatusInfo.INSUFFICIENT_LIGHT:
+                statusMessage = "Not enough light in the scene";
                 break;
             case TrackableBehaviour.StatusInfo.RELOCALIZING:
                 // Display a relocalization message in the UI if:

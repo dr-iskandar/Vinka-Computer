@@ -91,7 +91,7 @@ public class TrackableSettings : MonoBehaviour
 
     void OnDevicePoseStatusChanged(Vuforia.TrackableBehaviour.Status status, Vuforia.TrackableBehaviour.StatusInfo statusInfo)
     {
-        Debug.Log("OnDevicePoseStatusChanged(" + status + ", " + statusInfo + ")");
+        // Debug.Log("OnDevicePoseStatusChanged(" + status + ", " + statusInfo + ")");
 
         if (statusInfo == Vuforia.TrackableBehaviour.StatusInfo.RELOCALIZING)
         {
