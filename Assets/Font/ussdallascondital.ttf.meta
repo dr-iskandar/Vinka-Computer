@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: da7326ec656b2ad4e8e3770846109447
+timeCreated: 1515119048
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: U.S.S. Dallas Condensed Italic
+  fontNames:
+  - U.S.S. Dallas Condensed Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

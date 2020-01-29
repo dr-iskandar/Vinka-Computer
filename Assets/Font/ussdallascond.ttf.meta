@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0b6b720fb5ef98144851e674eee5f7d3
+timeCreated: 1515119040
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: U.S.S. Dallas Condensed
+  fontNames:
+  - U.S.S. Dallas Condensed
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

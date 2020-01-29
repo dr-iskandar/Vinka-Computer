@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 82b6089d4e853e043a8ba08206de84eb
+timeCreated: 1515119044
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Moaren
+  fontNames:
+  - Moaren
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e04777a21d61de249ae37e3206bddd9f
+timeCreated: 1515119048
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Atyla
+  fontNames:
+  - Atyla
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

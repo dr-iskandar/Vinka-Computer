@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 66bc7df303b3e2f4b9749a91fa2c93fc
+timeCreated: 1519997847
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Rocket Rinder
+  fontNames:
+  - Rocket Rinder
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

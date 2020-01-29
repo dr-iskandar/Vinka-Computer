@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f5ebf3439df8d1e41bc17178bd89274b
+timeCreated: 1515119049
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: U.S.S. Dallas Halftone
+  fontNames:
+  - U.S.S. Dallas Halftone
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

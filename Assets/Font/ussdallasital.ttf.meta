@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3df06653a324f1b4ba28d05e78da5399
+timeCreated: 1515119042
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: U.S.S. Dallas Italic
+  fontNames:
+  - U.S.S. Dallas Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
